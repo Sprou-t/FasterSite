@@ -1,0 +1,5 @@
+info: title: gallery-api, version: 0.1.0; servers: [/api] for future integration.
+
+x-workflow: referenceRepo: ../next-faster and findingsDoc: docs/research/nextfaster-findings.md to enforce the research-first step.
+
+paths (for later): GET /api/images and GET /api/images/{id} returning photo rows joined with S3 variants; contract-first stub only today.
