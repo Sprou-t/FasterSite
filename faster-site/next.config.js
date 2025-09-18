@@ -5,6 +5,14 @@ const nextConfig = {
         minimumCacheTTL: 31536000,  // 1 year cache for images
         formats: ['image/webp', 'image/avif'],
         qualities: [50, 65, 75, 80, 90, 95],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'faster-site.s3.ap-southeast-1.amazonaws.com',
+                port: '',
+                pathname: '/images/**',
+            },
+        ],
     },
     typescript: {
         // !! WARN !!

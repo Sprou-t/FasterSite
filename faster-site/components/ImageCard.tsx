@@ -18,6 +18,7 @@ export function ImageCard({ image, index, priority = false }: ImageCardProps) {
   return (
     <OptimizedLink
       href={`/image/${image.id}`}
+      imageSrc={image.s3Url}
       className="group block rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow"
     >
       <div className="aspect-square relative overflow-hidden rounded-t-lg bg-gray-100">
