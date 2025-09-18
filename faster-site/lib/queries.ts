@@ -97,7 +97,7 @@ export const getImages = unstable_cache(
     console.log(`🔐 Generating secure URLs for ${dbImages.length} images...`);
     return await addSecureUrls(dbImages);
   },
-  (categorySlug?: string) => ['images', categorySlug || 'all'], // Dynamic cache key
+  (categorySlug?: string) => ['images', categorySlug || 'all', 'v2'], // Dynamic cache key
   {
     revalidate: 60 * 60 * 2, // 2 hours
   }
