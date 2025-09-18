@@ -5,7 +5,9 @@
       "Bash(npx create-next-app:*)",
       "Bash(npm install:*)",
       "Bash(dir:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npm run:*)",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_9U7ySZDQhfip@ep-red-field-a1xcs3ig-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npx tsx lib/cleanup.ts)"
     ],
     "deny": [],
     "ask": []

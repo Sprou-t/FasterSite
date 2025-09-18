@@ -13,6 +13,8 @@ export function ImageCard({ image, index, priority = false }: ImageCardProps) {
   const isEager = index < 12; // First 12 images load eagerly
   const isPriority = priority && index < 6; // Only first 6 get priority
 
+  // Strategic loading: first 6 get priority, first 12 are eager, rest are lazy
+
   return (
     <OptimizedLink
       href={`/image/${image.id}`}

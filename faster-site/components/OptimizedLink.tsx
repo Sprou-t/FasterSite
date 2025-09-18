@@ -45,9 +45,12 @@ export function OptimizedLink({
         if (isNear && !wasNear) {
           setIsNearCursor(true);
           // Prefetch route when cursor gets near
+          console.log(`🎯 Cursor within 150px: prefetching ${href}`);
+          console.log(`📏 Distance: ${Math.round(distance)}px`);
           router.prefetch(href);
         } else if (!isNear && wasNear) {
           setIsNearCursor(false);
+          console.log(`❌ Cursor moved away from ${href}`);
         }
       });
     };
@@ -70,6 +73,7 @@ export function OptimizedLink({
       className={className}
       onMouseEnter={() => {
         // Immediate prefetch on hover
+        console.log(`🔥 HOVER: Immediately prefetching ${href}`);
         router.prefetch(href);
       }}
       onMouseDown={(e) => {
