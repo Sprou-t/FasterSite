@@ -1,0 +1,36 @@
+{
+  "name": "faster-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "drizzle-orm": "^0.36.0",
+    "@neondatabase/serverless": "^0.10.0",
+    "@heroicons/react": "^2.0.18"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.6",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "drizzle-kit": "^0.29.0",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^15.1.0",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.7.2",
+    "@tailwindcss/typography": "^0.5.15",
+    "autoprefixer": "^10.4.20"
+  }
+}
