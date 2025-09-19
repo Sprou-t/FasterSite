@@ -31,23 +31,6 @@
     animation-delay: 150ms;
   }
 
-  /* Defensive layout styles for production */
-  .sidebar-layout {
-    display: flex !important;
-    min-height: 100vh !important;
-  }
-
-  .sidebar-container {
-    width: 16rem !important; /* w-64 */
-    flex-shrink: 0 !important;
-    background-color: white !important;
-    border-right: 1px solid rgb(229 231 235) !important; /* border-gray-200 */
-  }
-
-  .main-content {
-    flex: 1 !important;
-    overflow: hidden !important;
-  }
 }
 
 /* Performance optimizations */
