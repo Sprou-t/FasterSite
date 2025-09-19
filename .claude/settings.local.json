@@ -1,21 +1,24 @@
 {
-    "permissions": {
-        "allow": [
-            "Bash(tree:*)",
-            "Bash(npx create-next-app:*)",
-            "Bash(npm install:*)",
-            "Bash(dir:*)",
-            "Bash(npm run build:*)",
-            "Bash(npm run:*)",
-            "WebFetch(domain:faster-site-three.vercel.app)",
-            "Bash(netstat:*)",
-            "Bash(findstr:*)",
-            "Bash(taskkill:*)",
-            "Bash(npx kill-port:*)",
-            "WebFetch(domain:localhost)",
-            "Bash(curl:*)"
-        ],
-        "deny": [],
-        "ask": []
-    }
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(npm install:*)",
+      "Bash(dir:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run:*)",
+      "WebFetch(domain:faster-site-three.vercel.app)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(npx kill-port:*)",
+      "WebFetch(domain:localhost)",
+      "Bash(curl:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
 }

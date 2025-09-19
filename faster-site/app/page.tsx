@@ -2,6 +2,8 @@ import { Suspense } from 'react';
 import { getCategories, getImages, getImageCount } from '@/lib/queries';
 import { CategorySidebar } from '@/components/CategorySidebar';
 import { ImageGrid } from '@/components/ImageGrid';
+import { GalleryCacheWarmer } from '@/components/GalleryCacheWarmer';
+import { GalleryScrollRestoration } from '@/components/GalleryScrollRestoration';
 
 // Loading components for Suspense boundaries
 function ImageGridSkeleton() {
@@ -32,7 +34,13 @@ function SidebarSkeleton() {
 // Server components with caching
 async function ImageGridSection({ category }: { category?: string }) {
   const images = await getImages(category);
-  return <ImageGrid images={images} />;
+  return (
+    <>
+      <ImageGrid images={images} />
+      {/* Scroll restoration for back navigation */}
+      <GalleryScrollRestoration images={images} currentCategory={category} />
+    </>
+  );
 }
 
 async function SidebarSection({ currentCategory }: { currentCategory?: string }) {
@@ -53,6 +61,13 @@ async function StatsSection({ category }: { category?: string }) {
         {count} {count === 1 ? 'image' : 'images'}
         {category && ` in ${category}`}
       </p>
+      {/* Cache warmer for gallery */}
+      <GalleryCacheWarmer
+        currentCategory={category}
+        totalImages={count}
+        currentPage={1}
+        imagesPerLoad={20}
+      />
     </div>
   );
 }

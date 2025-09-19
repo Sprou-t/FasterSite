@@ -25,6 +25,11 @@
   .loading-skeleton {
     @apply animate-pulse bg-gray-200 rounded;
   }
+
+  /* Spinner animations */
+  .animation-delay-150 {
+    animation-delay: 150ms;
+  }
 }
 
 /* Performance optimizations */

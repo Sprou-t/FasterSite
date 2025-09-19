@@ -14,7 +14,6 @@ export function ImageGrid({ images, className = '' }: ImageGridProps) {
           key={image.id}
           image={image}
           index={index}
-          priority={index < 6} // First 6 images get priority loading
         />
       ))}
     </div>

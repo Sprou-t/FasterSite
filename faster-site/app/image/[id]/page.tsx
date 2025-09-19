@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getImage, getImages } from '@/lib/queries';
+import { getImage, getImages, getCategories } from '@/lib/queries';
 import { ViewFullSizeButton } from '@/components/ViewFullSizeButton';
+import { OptimizedLink } from '@/components/OptimizedLink';
+import { BackNavigationPreloader } from '@/components/BackNavigationPreloader';
 
 interface ImagePageProps {
   params: Promise<{ id: string }>;
@@ -34,18 +35,31 @@ async function ImageDetailSection({ id }: { id: number }) {
     notFound();
   }
 
+  // Get category info for the image to determine back navigation
+  const categories = await getCategories();
+  const category = categories.find(cat => cat.id === image.categoryId);
+  const backHref = category ? `/?category=${category.slug}` : '/';
+
   return (
     <div className="max-w-6xl mx-auto p-6">
-      {/* Back button */}
-      <Link
-        href="/"
+      {/* Enhanced back button with prefetching */}
+      <OptimizedLink
+        href={backHref}
+        isBackButton={true}
+        prefetchDistance={200} // Larger distance for back button
         className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-6 transition-colors"
       >
         <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
         Back to Gallery
-      </Link>
+      </OptimizedLink>
+
+      {/* Back navigation preloader with position awareness */}
+      <BackNavigationPreloader
+        categorySlug={category?.slug}
+        currentImageId={image.id}
+      />
 
       {/* Image and details */}
       <div className="grid lg:grid-cols-2 gap-8">

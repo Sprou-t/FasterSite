@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    experimental: {
+        ppr: true,           // Now enabled with canary version
+        inlineCss: true,
+        reactCompiler: true, // Now enabled with canary version
+    },
     // Basic image optimization settings
     images: {
-        minimumCacheTTL: 31536000,  // 1 year cache for images
+        minimumCacheTTL: process.env.NODE_ENV === 'development' ? 0 : 31536000,  // No cache in dev, 1 year in prod
         formats: ['image/webp', 'image/avif'],
         qualities: [50, 65, 75, 80, 90, 95],
         remotePatterns: [
