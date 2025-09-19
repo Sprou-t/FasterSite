@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { getCategories, getImages, getImageCount } from '@/lib/queries';
-import { CategorySidebar } from '@/components/CategorySidebar';
-import { ImageGrid } from '@/components/ImageGrid';
-import { GalleryCacheWarmer } from '@/components/GalleryCacheWarmer';
-import { GalleryScrollRestoration } from '@/components/GalleryScrollRestoration';
+import { CategorySidebar } from '@/features/gallery/components/CategorySidebar';
+import { ImageGrid } from '@/features/gallery/components/ImageGrid';
+import { GalleryCacheWarmer } from '@/features/performance/components/GalleryCacheWarmer';
+import { GalleryScrollRestoration } from '@/features/performance/components/GalleryScrollRestoration';
 
 // Loading components for Suspense boundaries
 function ImageGridSkeleton() {

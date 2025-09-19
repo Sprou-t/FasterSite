@@ -159,6 +159,7 @@ Route (app)                             Size  First Load JS  Revalidate
 
 - [NextFaster Research Findings](docs/research/nextfaster-findings.md) - Detailed analysis of NextFaster's techniques
 - [Performance Implementation Guide](docs/performance.md) - **Complete code examples and implementation details**
+- [Folder Structure Guide](docs/folder-structure.md) - **Feature-based architecture documentation**
 - [Database Schema](docs/database.md) - Complete schema documentation
 
 ## 🤝 Contributing

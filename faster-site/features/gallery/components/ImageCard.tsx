@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { OptimizedLink } from './OptimizedLink';
+import { OptimizedLink } from '../../../components/custom/OptimizedLink';
 import type { Image as ImageType } from '@/lib/schema';
 
 interface ImageCardProps {

@@ -1,4 +1,4 @@
-import { unstable_cache } from './cache';
+import { unstable_cache } from '../features/performance/lib/cache';
 import { db } from './db';
 import { categories, images } from './schema';
 import { eq, count, sql } from 'drizzle-orm';

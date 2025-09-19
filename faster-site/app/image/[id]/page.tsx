@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getImage, getImages, getCategories } from '@/lib/queries';
 import { ViewFullSizeButton } from '@/components/ViewFullSizeButton';
-import { OptimizedLink } from '@/components/OptimizedLink';
-import { BackNavigationPreloader } from '@/components/BackNavigationPreloader';
+import { OptimizedLink } from '@/components/custom/OptimizedLink';
+import { BackNavigationPreloader } from '@/features/performance/components/BackNavigationPreloader';
 
 interface ImagePageProps {
   params: Promise<{ id: string }>;

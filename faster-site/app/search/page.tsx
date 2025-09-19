@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { searchImages } from '@/lib/queries';
-import { ImageGrid } from '@/components/ImageGrid';
-import { SearchBar } from '@/components/SearchBar';
+import { ImageGrid } from '@/features/gallery/components/ImageGrid';
+import { SearchBar } from '@/features/search/components/SearchBar';
 
 // Loading skeleton for search results
 function SearchResultsSkeleton() {
