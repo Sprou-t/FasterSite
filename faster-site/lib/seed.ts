@@ -19,8 +19,6 @@ export async function seedDatabase() {
       { slug: 'nature', name: 'Nature' },
       { slug: 'architecture', name: 'Architecture' },
       { slug: 'technology', name: 'Technology' },
-      { slug: 'business', name: 'Business' },
-      { slug: 'art', name: 'Art' },
     ];
 
     const insertedCategories = await db.insert(categories).values(categoryData).returning();
