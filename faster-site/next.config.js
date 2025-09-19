@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     experimental: {
-        ppr: true,           // Now enabled with canary version
-        inlineCss: true,
-        reactCompiler: true, // Now enabled with canary version
+        ppr: process.env.NODE_ENV === 'development' ? true : false,  // Only enable PPR in development
+        inlineCss: process.env.NODE_ENV === 'development' ? true : false,  // Only enable inlineCss in development
+        reactCompiler: true, // Keep React Compiler enabled
     },
     // Basic image optimization settings
     images: {

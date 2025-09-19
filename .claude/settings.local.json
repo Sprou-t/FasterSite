@@ -16,7 +16,8 @@
       "Bash(curl:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Read(//c/Users/lauwe/OneDrive/Pictures/Screenshots/**)"
     ],
     "deny": [],
     "ask": []

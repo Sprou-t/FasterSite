@@ -18,7 +18,7 @@ function ImageGridSkeleton() {
 
 function SidebarSkeleton() {
   return (
-    <aside className="w-64 bg-white border-r border-gray-200">
+    <aside className="sidebar-container">
       <div className="p-6">
         <div className="h-6 loading-skeleton mb-4" />
         <div className="space-y-2">
@@ -81,14 +81,14 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   const category = resolvedSearchParams.category;
 
   return (
-    <div className="flex min-h-screen">
+    <div className="sidebar-layout bg-gray-50">
       {/* Sidebar with Suspense boundary */}
       <Suspense fallback={<SidebarSkeleton />}>
         <SidebarSection currentCategory={category} />
       </Suspense>
 
       {/* Main content */}
-      <div className="flex-1 p-6">
+      <div className="main-content p-6">
         <div className="max-w-7xl mx-auto">
           {/* Stats section */}
           <Suspense fallback={<div className="h-6 w-32 loading-skeleton mb-6" />}>

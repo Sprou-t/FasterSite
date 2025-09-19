@@ -13,7 +13,7 @@ export function CategorySidebar({
   className = ''
 }: CategorySidebarProps) {
   return (
-      <aside className={`w-64 bg-white border-r border-gray-200 ${className}`}>
+    <aside className={`sidebar-container ${className}`}>
       <div className="p-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Categories</h2>
         <nav className="space-y-2">
