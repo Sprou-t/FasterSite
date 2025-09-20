@@ -1,6 +1,6 @@
 # FasterSite Folder Structure
 
-This document explains the feature-based folder structure implemented in FasterSite, designed for scalability, maintainability, and clear separation of concerns.
+This document explains the feature-based folder structure implemented in FasterSite (unsplash-faster), designed for scalability, maintainability, and clear separation of concerns.
 
 ## 📁 Overview
 
@@ -14,63 +14,57 @@ FasterSite uses a **feature-based architecture** where related components, logic
 ## 🏗️ Complete Folder Structure
 
 ```
-faster-site/
+unsplash-faster/
 ├── app/                          # Next.js App Router (pages, layouts, API routes)
 │   ├── api/                      # API endpoints
-│   │   ├── prefetch-images/      # Image prefetching API
-│   │   └── search/               # Search API
+│   │   ├── add-png-image/        # PNG image addition API
+│   │   ├── add-test-image/       # Test image API
+│   │   └── prefetch-images/      # Image prefetching API
 │   ├── image/[id]/               # Dynamic image detail pages
 │   │   └── page.tsx             # Image detail page component
 │   ├── search/                   # Search feature pages
-│   │   ├── loading.tsx          # Search loading UI
 │   │   └── page.tsx             # Search results page
-│   ├── globals.css              # Global styles
 │   ├── layout.tsx               # Root layout component
-│   ├── loading.tsx              # Global loading UI
-│   └── page.tsx                 # Home page (gallery)
+│   └── page.tsx                 # Home page (gallery with sidebar)
 ├── components/                   # Global reusable components
 │   └── custom/                   # Custom-built components
-│       ├── OptimizedLink.tsx    # Smart prefetching link component
-│       └── ViewFullSizeButton.tsx # Image view button
+│       └── OptimizedLink.tsx    # Smart prefetching link component
 ├── features/                     # Feature-based organization
 │   ├── gallery/                 # Image gallery feature
-│   │   ├── components/          # Gallery-specific UI components
-│   │   │   ├── CategorySidebar.tsx  # Category navigation sidebar
-│   │   │   ├── ImageCard.tsx        # Individual image card
-│   │   │   └── ImageGrid.tsx        # Grid layout for images
-│   │   ├── lib/                 # Gallery business logic
-│   │   └── utils/               # Gallery utility functions
+│   │   └── components/          # Gallery-specific UI components
+│   │       ├── CategorySidebar.tsx  # Category navigation sidebar
+│   │       └── ImageGrid.tsx        # Grid layout for images
 │   ├── performance/             # Performance optimization feature
-│   │   ├── components/          # Performance-related components
-│   │   │   ├── BackNavigationPreloader.tsx    # Back navigation optimization
-│   │   │   ├── GalleryCacheWarmer.tsx         # Proactive cache warming
-│   │   │   └── GalleryScrollRestoration.tsx   # Scroll position memory
-│   │   ├── lib/                 # Performance optimization logic
-│   │   │   └── cache.ts         # Advanced caching utilities
-│   │   └── utils/               # Performance utility functions
+│   │   └── lib/                 # Performance optimization logic
+│   │       └── cache.ts         # Advanced caching utilities with NextFaster patterns
 │   └── search/                  # Search functionality feature
-│       ├── components/          # Search-specific UI components
-│       │   └── SearchBar.tsx    # Search input component
-│       ├── lib/                 # Search business logic
-│       └── utils/               # Search utility functions
-├── lib/                         # External service integrations
-│   ├── db.ts                    # Database connection and configuration
+│       └── components/          # Search-specific UI components
+│           └── SearchBar.tsx    # Search input component
+├── lib/                         # External service integrations & database
+│   ├── db.ts                    # Database connection and configuration (Drizzle + Neon)
 │   ├── queries.ts               # Database queries with caching
-│   ├── s3.ts                    # AWS S3 service integration
-│   └── schema.ts                # Database schema definitions
-├── data/                        # Static and mock data
-│   └── mockData.ts              # Sample data for development/testing
-├── utils/                       # Global utility functions
-├── schemas/                     # Shared validation schemas
+│   ├── schema.ts                # Database schema definitions
+│   └── unsplash.ts              # Unsplash API integration
+├── scripts/                     # Data ingestion and management scripts
+│   ├── add-architecture-images.ts  # Script to add architecture category images
+│   ├── add-categories.ts           # Script to add categories to database
+│   ├── add-local-image.ts          # Script to add local images
+│   └── ingest-images.ts            # Main image ingestion script
+├── data/                        # Static and mock data (created as needed)
+├── utils/                       # Global utility functions (created as needed)
+├── schemas/                     # Shared validation schemas (created as needed)
 ├── docs/                        # Documentation
 │   ├── research/                # Research and analysis documents
 │   │   └── nextfaster-findings.md  # NextFaster analysis
 │   ├── folder-structure.md      # This document
 │   └── performance.md           # Performance implementation guide
-├── next.config.js              # Next.js configuration
+├── drizzle/                     # Database migrations and schema
+├── public/                      # Static assets
+├── next.config.js              # Next.js configuration with NextFaster optimizations
 ├── package.json                # Dependencies and scripts
-├── tailwind.config.js          # Tailwind CSS configuration
+├── tailwind.config.js          # Tailwind CSS configuration (if present)
 ├── tsconfig.json               # TypeScript configuration
+├── drizzle.config.ts           # Drizzle ORM configuration
 └── README.md                   # Project documentation
 ```
 
@@ -81,34 +75,28 @@ faster-site/
 **Purpose:** Everything related to browsing and displaying images
 
 **Components:**
-- `CategorySidebar.tsx` - Category navigation and filtering
-- `ImageCard.tsx` - Individual image display with smart loading
-- `ImageGrid.tsx` - Responsive grid layout for images
+- `CategorySidebar.tsx` - Category navigation sidebar with image counts and URL-based filtering
+- `ImageGrid.tsx` - Responsive grid layout with optimized image loading and lazy loading
 
-**Why grouped together:** These components work together to create the gallery browsing experience. They share common concerns like image loading, responsive layout, and user interaction patterns.
+**Why grouped together:** These components work together to create the gallery browsing experience. They share common concerns like image loading, responsive layout, category filtering, and user interaction patterns.
 
 ### **2. Performance Feature** (`features/performance/`)
 
 **Purpose:** Advanced performance optimizations that make FasterSite unique
 
-**Components:**
-- `BackNavigationPreloader.tsx` - Position-aware gallery prefetching
-- `GalleryCacheWarmer.tsx` - Proactive next page and category warming
-- `GalleryScrollRestoration.tsx` - Seamless scroll position memory
-
 **Lib:**
-- `cache.ts` - Multi-layer caching wrapper (NextFaster pattern)
+- `cache.ts` - Multi-layer caching wrapper implementing NextFaster patterns with `unstable_cache`
 
-**Why separate feature:** Performance optimizations are a key differentiator for this project. Grouping them makes it easy to understand, maintain, and showcase the performance techniques.
+**Why separate feature:** Performance optimizations are a key differentiator for this project. The caching utilities implement advanced patterns like 2-hour revalidation, dynamic cache keys, and optimized query patterns.
 
 ### **3. Search Feature** (`features/search/`)
 
-**Purpose:** Search functionality across images and categories
+**Purpose:** Search functionality across images with PostgreSQL full-text search
 
 **Components:**
-- `SearchBar.tsx` - Search input with real-time suggestions
+- `SearchBar.tsx` - Search input component for image search
 
-**Why separate feature:** Search has its own UI patterns, API endpoints, and business logic. Can be extended with features like filters, advanced search, search history, etc.
+**Why separate feature:** Search has its own UI patterns, API endpoints, and business logic. Uses PostgreSQL full-text search with hybrid ILIKE fallback for robust search capabilities.
 
 ## 📂 Folder Type Conventions
 
@@ -158,45 +146,38 @@ import { unstable_cache } from '@/features/performance/lib/cache';
 ### **Before (Type-Based)**
 ```
 components/
-├── ImageCard.tsx
 ├── ImageGrid.tsx
 ├── CategorySidebar.tsx
 ├── SearchBar.tsx
-├── BackNavigationPreloader.tsx
-├── GalleryCacheWarmer.tsx
-└── GalleryScrollRestoration.tsx
+└── OptimizedLink.tsx
 
 lib/
 ├── cache.ts
 ├── queries.ts
 ├── db.ts
-└── schema.ts
+├── schema.ts
+└── unsplash.ts
 ```
 
 ### **After (Feature-Based)**
 ```
 features/
 ├── gallery/components/
-│   ├── ImageCard.tsx
 │   ├── ImageGrid.tsx
 │   └── CategorySidebar.tsx
 ├── search/components/
 │   └── SearchBar.tsx
-└── performance/
-    ├── components/
-    │   ├── BackNavigationPreloader.tsx
-    │   ├── GalleryCacheWarmer.tsx
-    │   └── GalleryScrollRestoration.tsx
-    └── lib/
-        └── cache.ts
+└── performance/lib/
+    └── cache.ts
 
 components/custom/
 └── OptimizedLink.tsx
 
 lib/
-├── queries.ts
+├── queries.ts      # Now imports cache from features/performance/lib/cache
 ├── db.ts
-└── schema.ts
+├── schema.ts
+└── unsplash.ts
 ```
 
 ## 📈 Benefits of This Structure

@@ -17,7 +17,16 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Read(//c/Users/lauwe/OneDrive/Pictures/Screenshots/**)"
+      "Read(//c/Users/lauwe/OneDrive/Pictures/Screenshots/**)",
+      "WebSearch",
+      "Bash(npx drizzle-kit push:*)",
+      "Bash(npx tsx:*)",
+      "Bash(npx drizzle-kit:*)",
+      "Bash(npx drizzle-kit migrate:*)",
+      "Bash(node:*)",
+      "Bash(rm:*)",
+      "Bash(find:*)",
+      "Bash(npm start)"
     ],
     "deny": [],
     "ask": []
