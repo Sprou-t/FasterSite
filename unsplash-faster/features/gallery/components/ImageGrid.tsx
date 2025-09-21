@@ -31,6 +31,7 @@ export function ImageGrid({ images }: ImageGridProps) {
     id: images[0].id,
     title: images[0].title,
     imageUrl: images[0].imageUrl,
+    unsplashId: images[0].unsplashId,
     unsplashUserName: images[0].unsplashUserName,
     unsplashLikes: images[0].unsplashLikes
   } : 'No images')

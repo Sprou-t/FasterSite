@@ -13,6 +13,7 @@
     "dotenv": "^17.2.2",
     "drizzle-kit": "^0.31.4",
     "drizzle-orm": "^0.44.5",
+    "linkedom": "^0.18.12",
     "next": "15.6.0-canary.16",
     "postgres": "^3.4.7",
     "react": "19.1.0",

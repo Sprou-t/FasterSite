@@ -28,11 +28,15 @@ async function ImageDetail({ id }: { id: string }) {
         notFound()
     }
 
+    // Server-side logging for debugging
+    console.log(`🎯 IMAGE PAGE: Loading image with FULL URL:`, image.imageUrl)
+
     return (
         <div className="max-w-6xl mx-auto p-6">
             {/* Back Link with OptimizedLink */}
             <OptimizedLink
                 href="/"
+                prefetch={false}
                 className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-6 transition-colors"
             >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

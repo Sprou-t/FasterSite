@@ -1,4 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Unsplash Gallery with NextFaster Optimization
+
+This is a high-performance image gallery application built with [Next.js](https://nextjs.org) and optimized using [NextFaster](https://github.com/vercel/next.js/tree/canary/examples/with-nextfaster) patterns for instant navigation and image loading.
+
+## Key Features
+
+- **Instant Navigation**: Route prefetching for zero JavaScript download time
+- **Image Precaching**: Intelligent image prefetching based on viewport visibility
+- **Optimized Performance**: NextFaster-inspired optimization techniques
+- **Responsive Design**: Mobile-first responsive image gallery
+- **Database Integration**: PostgreSQL with Drizzle ORM
+
+## Architecture Documentation
+
+📚 **[Complete Prefetching Architecture Guide](../docs/PREFETCHING_ARCHITECTURE.md)**
+- Detailed explanation of the prefetching and caching system
+- Step-by-step data flow from gallery to image page
+- Performance benefits and implementation details
+
+🔍 **[OptimizedLink Component Line-by-Line](../docs/OPTIMIZED_LINK_EXPLAINED.md)**
+- Complete breakdown of the OptimizedLink component
+- Function-by-function explanation with code examples
+- Understanding intersection observers and caching logic
+
+📁 **[Project Structure Guide](../docs/folder-structure.md)**
+- Feature-based architecture organization
+- Component and library organization patterns
+
+🚀 **[Performance Optimization Techniques](../docs/optimization-techniques.md)**
+- Multi-layer caching strategies
+- Image loading and prefetching optimizations
 
 ## Getting Started
 

@@ -1,17 +1,15 @@
 {
-  "permissions": {
-    "allow": [
-      "Read(//c/Users/lauwe/OneDrive/Pictures/Screenshots/**)",
-      "Bash(curl:*)",
-      "Bash(copy:*)",
-      "Bash(npm install)",
-      "Bash(npm start)",
-      "WebSearch",
-      "Bash(npx tsx:*)",
-      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_PEpTUGu3x2tH@ep-snowy-rain-a13zsxqv-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npx tsx scripts/add-categories.ts)",
-      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_PEpTUGu3x2tH@ep-snowy-rain-a13zsxqv-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npx tsx scripts/add-architecture-images.ts)"
-    ],
-    "deny": [],
-    "ask": []
-  }
+    "permissions": {
+        "allow": [
+            "Read(//c/Users/lauwe/OneDrive/Pictures/Screenshots/**)",
+            "Bash(curl:*)",
+            "Bash(copy:*)",
+            "Bash(npm install)",
+            "Bash(npm start)",
+            "WebSearch",
+            "Bash(npx tsx:*)"
+        ],
+        "deny": [],
+        "ask": []
+    }
 }

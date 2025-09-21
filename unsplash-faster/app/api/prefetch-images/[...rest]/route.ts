@@ -1,53 +1,60 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { parseHTML } from 'linkedom';
 
 // NextFaster's prefetch-images API pattern
-// This API extracts image metadata for prefetching without rendering the full page
+// This API fetches the actual page HTML and extracts real image URLs
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ rest: string[] }> }
 ) {
   try {
     const { rest } = await params;
-    const path = `/${rest.join('/')}`;
+    const href = rest.join('/');
 
-    // For image detail pages, extract the image ID and return prefetch data
-    const imageIdMatch = path.match(/\/image\/(\w+)/);
-
-    if (imageIdMatch) {
-      const imageId = imageIdMatch[1];
-
-      // Return mock prefetch data for now (replace with actual image queries later)
-      return NextResponse.json({
-        images: [
-          {
-            src: `https://images.unsplash.com/${imageId}?w=800&q=80`,
-            srcset: `https://images.unsplash.com/${imageId}?w=400&q=80 400w, https://images.unsplash.com/${imageId}?w=800&q=80 800w, https://images.unsplash.com/${imageId}?w=1200&q=80 1200w`,
-            sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px",
-            loading: "eager",
-            alt: `Image ${imageId}`
-          }
-        ],
-        prefetched: true,
-        timestamp: Date.now()
-      });
+    if (!href) {
+      return NextResponse.json({ images: [] });
     }
 
-    // Default: return empty array for non-image pages
-    return NextResponse.json({
-      images: [],
-      prefetched: true,
-      timestamp: Date.now()
-    });
+    // Build URL to fetch actual page HTML
+    const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
+    const host = request.headers.get('host') || 'localhost:3001';
+    const url = `${protocol}://${host}/${href}`;
+
+    // Fetch the actual page HTML
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error(`Failed to fetch ${url}: ${response.status}`);
+      return NextResponse.json({ images: [] });
+    }
+
+    const body = await response.text();
+    const { document } = parseHTML(body);
+
+    // Extract all images from the main content (like NextFaster does)
+    const images = Array.from(document.querySelectorAll('main img'))
+      .map((img) => ({
+        srcset: img.getAttribute('srcset') || img.getAttribute('srcSet'),
+        sizes: img.getAttribute('sizes'),
+        src: img.getAttribute('src'),
+        alt: img.getAttribute('alt'),
+        loading: img.getAttribute('loading'),
+      }))
+      .filter((img) => img.src && !img.src.startsWith('data:'));
+
+    return NextResponse.json(
+      { images },
+      {
+        headers: {
+          'Cache-Control': 'public, max-age=3600',
+        },
+      }
+    );
 
   } catch (error) {
     console.error('Prefetch API error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch prefetch data' },
-      { status: 500 }
-    );
+    return NextResponse.json({ images: [] });
   }
 }
 
-// Mark as force-static for edge caching (NextFaster pattern)
-export const runtime = 'edge';
-export const dynamic = 'force-static';
+// Allow dynamic behavior for database queries
+export const dynamic = 'force-dynamic';
